@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceConveter", "Distanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesCalculator", "SalesCalculator\SalesCalculator.csproj", "{E2F56FB8-1EBE-49B9-B3A6-B4A7ACD15E67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise1", "Exercise1\Exercise1.csproj", "{F054FF3F-0E64-454D-A12F-C84059FE8330}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise", "Exercise", "{325C92F1-47AF-45ED-BA50-8F158AE52C12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise2", "Exercise2\Exercise2.csproj", "{B4164FC1-28D6-4339-976A-FD29F40CC061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +29,14 @@ Global
 		{E2F56FB8-1EBE-49B9-B3A6-B4A7ACD15E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F56FB8-1EBE-49B9-B3A6-B4A7ACD15E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F56FB8-1EBE-49B9-B3A6-B4A7ACD15E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F054FF3F-0E64-454D-A12F-C84059FE8330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F054FF3F-0E64-454D-A12F-C84059FE8330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F054FF3F-0E64-454D-A12F-C84059FE8330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F054FF3F-0E64-454D-A12F-C84059FE8330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4164FC1-28D6-4339-976A-FD29F40CC061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4164FC1-28D6-4339-976A-FD29F40CC061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4164FC1-28D6-4339-976A-FD29F40CC061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4164FC1-28D6-4339-976A-FD29F40CC061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +44,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CC9426C0-E68F-47DF-BE05-B2479DCC6A3A} = {E13892DE-4B6A-406A-B4EF-4594D646A652}
 		{E2F56FB8-1EBE-49B9-B3A6-B4A7ACD15E67} = {E13892DE-4B6A-406A-B4EF-4594D646A652}
+		{F054FF3F-0E64-454D-A12F-C84059FE8330} = {325C92F1-47AF-45ED-BA50-8F158AE52C12}
+		{325C92F1-47AF-45ED-BA50-8F158AE52C12} = {E13892DE-4B6A-406A-B4EF-4594D646A652}
+		{B4164FC1-28D6-4339-976A-FD29F40CC061} = {325C92F1-47AF-45ED-BA50-8F158AE52C12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BEEB2E4-0B86-47DB-AE5A-040BD9AB17CC}
