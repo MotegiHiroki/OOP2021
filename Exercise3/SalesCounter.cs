@@ -56,10 +56,10 @@ namespace Exercise3 {
             Dictionary<string, int> dict = new Dictionary<string, int>();
             foreach (Sale sale in _sales) {
                 if (dict.ContainsKey(sale.ProductCategory)) {
-                    //すでにコレクションに店舗が追加されている
+                    //すでにコレクションに商品カテゴリーが追加されている
                     dict[sale.ProductCategory] += sale.Amount;
                 } else {
-                    //コレクションへ店舗を登録
+                    //コレクションへ商品カテゴリーを登録
                     dict[sale.ProductCategory] = sale.Amount;
                 }
             }
