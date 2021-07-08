@@ -20,13 +20,12 @@ namespace StopWatch {
         private void start_Click(object sender, EventArgs e) {
             
             tm.Start();
-            
+            stopWatch.Start();
             tm.Tick += Tm_Tick;
 
         }
 
         private void Tm_Tick(object sender, EventArgs e) {
-            stopWatch.Start();
             textBox1.Text = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\:ff");
         }
 
@@ -42,6 +41,11 @@ namespace StopWatch {
         private void re_Click(object sender, EventArgs e) {
             stopWatch.Reset();
             textBox1.Text = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\:ff");
+            listBox1.Items.Clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            listBox1.Items.Insert (0, textBox1.Text );
         }
     }
 }

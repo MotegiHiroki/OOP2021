@@ -29,19 +29,21 @@ namespace StopWatch {
             this.stop = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.re = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(262, 19);
+            this.textBox1.Size = new System.Drawing.Size(262, 23);
             this.textBox1.TabIndex = 0;
             // 
             // start
             // 
             this.start.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.start.Location = new System.Drawing.Point(12, 60);
+            this.start.Location = new System.Drawing.Point(26, 125);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(97, 39);
             this.start.TabIndex = 1;
@@ -52,7 +54,7 @@ namespace StopWatch {
             // stop
             // 
             this.stop.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.stop.Location = new System.Drawing.Point(177, 60);
+            this.stop.Location = new System.Drawing.Point(177, 125);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(97, 39);
             this.stop.TabIndex = 1;
@@ -63,17 +65,18 @@ namespace StopWatch {
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(177, 143);
+            this.button3.Location = new System.Drawing.Point(177, 201);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 39);
             this.button3.TabIndex = 1;
-            this.button3.Text = "button1";
+            this.button3.Text = "ラップ";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // re
             // 
             this.re.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.re.Location = new System.Drawing.Point(12, 143);
+            this.re.Location = new System.Drawing.Point(26, 201);
             this.re.Name = "re";
             this.re.Size = new System.Drawing.Size(97, 39);
             this.re.TabIndex = 1;
@@ -81,11 +84,22 @@ namespace StopWatch {
             this.re.UseVisualStyleBackColor = true;
             this.re.Click += new System.EventHandler(this.re_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(467, 14);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(254, 420);
+            this.listBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.re);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.stop);
@@ -106,6 +120,7 @@ namespace StopWatch {
         private System.Windows.Forms.Button stop;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button re;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
