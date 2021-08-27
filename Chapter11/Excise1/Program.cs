@@ -48,12 +48,12 @@ namespace Excise1
         private static void Exercisce1_3(string file)
         {
             var xdoc = XDocument.Load(file);
-            var sample1 = xdoc.Root.Elements().Max(x => x.Element("teammembers").Elements());
-            foreach (var sample in sample1)
+            var sample3 = xdoc.Root.Elements().Select(x => new
             {
-                var xname = sample.Element("name");
-                Console.WriteLine("{0},{1}", xname.Value);
-            }
+                Name = (string)x.Element("name").Value,
+                Team = x.Element("teammembers").Value
+            }).OrderByDescending(x => int.Parse(x.Team)).First();
+            Console.WriteLine(sample3.Name);
         }
     }
 }
