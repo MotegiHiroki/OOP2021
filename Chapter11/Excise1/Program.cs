@@ -18,7 +18,11 @@ namespace Excise1
             Console.WriteLine("------");
             Exercisce1_3(file);
             Console.WriteLine("------");
+            Exercisce1_4(file);
+            Console.WriteLine("------");
         }
+
+       
 
         private static void Exercise1_1(string file)
         {
@@ -54,6 +58,19 @@ namespace Excise1
                 Team = x.Element("teammembers").Value
             }).OrderByDescending(x => int.Parse(x.Team)).First();
             Console.WriteLine(sample3.Name);
+        }
+
+        private static void Exercisce1_4(string file)
+        {
+            var newfile = "sports.xml";
+            var element = new XElement("novelist", new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
+                new XElement("teammembers", "11"),
+                new XElement("firstplayed", "1863"));
+
+            var xdoc = XDocument.Load("Sample.xml");
+            xdoc.Root.Add(element);
+            xdoc.Save(newfile);
+            
         }
     }
 }
