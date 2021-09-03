@@ -22,9 +22,37 @@ namespace Section04
         public Program()
         {
             //DownloadString()
-           // DownloadFileAsync();
-           // OpenReadSample();
-            var results = GetWeatherReportFromYahoo(4610);
+            // DownloadFileAsync();
+            // OpenReadSample();
+            Console.Write("地域コード:");
+            int num = int.Parse(Console.ReadLine());
+            switch (num)
+            {
+                case 1:
+                    num = 4210;
+                    break;
+                case 2:
+                    num = 4220;
+                    break;
+                case 3:
+                    num = 4110;
+                    break;
+                case 4:
+                    num = 4010;
+                    break;
+                case 9:
+                    Console.WriteLine("コードを入力して下さい");
+                    Console.Write(">");
+                    num = int.Parse(Console.ReadLine());
+                    break;
+                default:
+                    Console.WriteLine("正しく入力して下さい");
+                    new Program();
+                    break;
+            }
+
+
+            var results = GetWeatherReportFromYahoo(num);
             foreach (var s in results)
             {
                 Console.WriteLine(s);
