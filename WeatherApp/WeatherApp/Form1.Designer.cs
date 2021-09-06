@@ -39,7 +39,7 @@ namespace WeatherApp
             // 
             this.tenki.Location = new System.Drawing.Point(307, 12);
             this.tenki.Name = "tenki";
-            this.tenki.Size = new System.Drawing.Size(75, 23);
+            this.tenki.Size = new System.Drawing.Size(115, 23);
             this.tenki.TabIndex = 0;
             this.tenki.Text = "天気表示";
             this.tenki.UseVisualStyleBackColor = true;

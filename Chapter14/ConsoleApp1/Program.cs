@@ -18,46 +18,69 @@ namespace Section04
 
            
         }
+        Dictionary<string, int> pairs = new Dictionary<string, int>()
+            {
+                {"前橋",4210 },
+                {"みなかみ" ,4220},
+                {"宇都宮",4110 },
+                {"水戸" ,4010},
+                {"その他" , int.Parse(Console.ReadLine()) }
+            };
 
         public Program()
         {
             //DownloadString()
             // DownloadFileAsync();
             // OpenReadSample();
+            Console.WriteLine("1:前橋\n2:みなかみ\n3:宇都宮\n4:水戸\n9:その他（直接入力)");
             Console.Write("地域コード:");
-            int num = int.Parse(Console.ReadLine());
-            switch (num)
+            List<int> numlist = new List<int>();
+            int num = 1;
+            foreach ( KeyValuePair<string,int> pair in pairs)
             {
-                case 1:
-                    num = 4210;
-                    break;
-                case 2:
-                    num = 4220;
-                    break;
-                case 3:
-                    num = 4110;
-                    break;
-                case 4:
-                    num = 4010;
-                    break;
-                case 9:
-                    Console.WriteLine("コードを入力して下さい");
-                    Console.Write(">");
-                    num = int.Parse(Console.ReadLine());
-                    break;
-                default:
-                    Console.WriteLine("正しく入力して下さい");
-                    new Program();
-                    break;
+                Console.WriteLine("{1}:{2}", num++, pair.Key);
+                numlist.Add(pair.Value);
+            }
+            //int num = int.Parse(Console.ReadLine());
+            //switch (num)
+            //{
+            //    case 1:
+            //        num = 4210;
+            //        break;
+            //    case 2:
+            //        num = 4220;
+            //        break;
+            //    case 3:
+            //        num = 4110;
+            //        break;
+            //    case 4:
+            //        num = 4010;
+            //        break;
+            //    case 9:
+            //        Console.WriteLine("コードを入力して下さい");
+            //        Console.Write(">");
+            //        num = int.Parse(Console.ReadLine());
+            //        break;
+            //    default:
+            //        Console.WriteLine("正しく入力して下さい");
+            //        new Program();
+            //        break;
+            //}
+
+            var selectArea = Console.ReadLine();
+            int pos = int.Parse(selectArea);
+            if (pos !=9)
+            {
+                var results = GetWeatherReportFromYahoo(selectArea[pos -1 ]);
+                foreach (var s in results)
+                {
+                    Console.WriteLine(s);
+                }
+                Console.ReadLine();//入力待ち
             }
 
-
-            var results = GetWeatherReportFromYahoo(num);
-            foreach (var s in results)
-            {
-                Console.WriteLine(s);
-            }
-            Console.ReadLine();//入力待ち
+           
+            
         }
 
         public void DownloadString()

@@ -23,7 +23,7 @@ namespace WeatherApp
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            int num = 0; ;
+            int num = 0; 
             switch (comboBox1.Text)
             {
                 case "前橋":
@@ -39,6 +39,8 @@ namespace WeatherApp
                     num = 4010;
                     break;
             }
+
+           
             var results = GetWeatherReportFromYahoo(num);
             foreach (var s in results)
             {
