@@ -34,6 +34,7 @@ namespace RssReader
             this.btRead = new System.Windows.Forms.Button();
             this.lbTitles = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btWeb = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -66,25 +67,36 @@ namespace RssReader
             // 
             this.lbTitles.FormattingEnabled = true;
             this.lbTitles.ItemHeight = 15;
-            this.lbTitles.Location = new System.Drawing.Point(25, 64);
+            this.lbTitles.Location = new System.Drawing.Point(22, 210);
             this.lbTitles.Name = "lbTitles";
-            this.lbTitles.Size = new System.Drawing.Size(255, 379);
+            this.lbTitles.Size = new System.Drawing.Size(682, 229);
             this.lbTitles.TabIndex = 4;
             this.lbTitles.SelectedIndexChanged += new System.EventHandler(this.lbTitles_SelectedIndexChanged);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(151, 42);
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(19, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 15);
+            this.label2.Size = new System.Drawing.Size(769, 125);
             this.label2.TabIndex = 5;
+            // 
+            // btWeb
+            // 
+            this.btWeb.Location = new System.Drawing.Point(629, 181);
+            this.btWeb.Name = "btWeb";
+            this.btWeb.Size = new System.Drawing.Size(75, 23);
+            this.btWeb.TabIndex = 6;
+            this.btWeb.Text = "web表示";
+            this.btWeb.UseVisualStyleBackColor = true;
+            this.btWeb.Click += new System.EventHandler(this.btWeb_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btWeb);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbTitles);
             this.Controls.Add(this.btRead);
@@ -92,6 +104,7 @@ namespace RssReader
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "32090";
+         
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,6 +117,7 @@ namespace RssReader
         private System.Windows.Forms.Button btRead;
         private System.Windows.Forms.ListBox lbTitles;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btWeb;
     }
 }
 

@@ -16,19 +16,54 @@ namespace RssReader
         {
             InitializeComponent();
         }
-        private void SetRsslink(string url)
-        {
-            Form1 form1 = new Form1();
-            form1.SetRssTitles(form1.tbUrl.Text);
-        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
         }
 
-        internal void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        internal void wbBrowser_DocumentCompleted(string sender)
         {
+            wbBrowser.Url = new Uri(sender);
+        }
 
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            if (wbBrowser.CanGoBack == true)
+            {
+                btBack.Enabled = true;
+                wbBrowser.GoBack();
+            }
+
+        }
+
+        private void btFront_Click(object sender, EventArgs e)
+        {
+            if (wbBrowser.CanGoForward == true)
+            {
+                wbBrowser.GoForward();
+            }
+        }
+
+        private void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (wbBrowser.CanGoBack == true)
+            {
+                btBack.Enabled = true;
+            }
+            else
+            {
+                btBack.Enabled = false;
+            }
+
+            if (wbBrowser.CanGoForward == true)
+            {
+                btFront.Enabled = true;
+            }
+            else
+            {
+                btFront.Enabled = false;
+            }
         }
     }
 }

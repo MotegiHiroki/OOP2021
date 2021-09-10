@@ -19,20 +19,17 @@ namespace RssReader
     {
         List<string> a = new List<string>();
         List<string> b = new List<string>();
+        List<string> c = new List<string>();
         public Form1()
         {
-            
             InitializeComponent();
-           
         }
-
-
 
         private void btRead_Click(object sender, EventArgs e)
         {
             SetRssTitles(tbUrl.Text);
-            //SetRsslink();
         }
+
         private void SetRssTitles(string url)
         {
 
@@ -50,28 +47,24 @@ namespace RssReader
                     lbTitles.Items.Add(node.Element("title").Value);
                     a.Add(node.Element("link").Value);
                     b.Add(node.Element("description").Value);
+                    c.Add(node.Element("pubDate").Value);
                 }
             } 
         }
-        public  Form2 form2;
+
+        private void btWeb_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            form2.wbBrowser_DocumentCompleted(a[lbTitles.SelectedIndex]);
+        }
+
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
-           Form2 form2 = new Form2();
-
-            
-            WebBrowser webBrowser1 = new WebBrowser();
-            string s = a[lbTitles.SelectedIndex];
-
-            form2.Text = webBrowser1.Navigate( s); ;
-
-            label2.Text = b[lbTitles.SelectedIndex];
-
+            DateTime dtime = DateTime.Parse(c[lbTitles.SelectedIndex]);
+            label2.Text = dtime + "\r\n" + b[lbTitles.SelectedIndex];
         }
-       
 
-        
-
-       
     }
 
 }
