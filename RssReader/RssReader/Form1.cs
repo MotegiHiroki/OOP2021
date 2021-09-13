@@ -17,9 +17,10 @@ namespace RssReader
 {
     public partial class Form1 : Form
     {
-        List<string> a = new List<string>();
-        List<string> b = new List<string>();
-        List<string> c = new List<string>();
+        IEnumerable<ItemData> items = null;
+        //List<string> a = new List<string>();
+        //List<string> b = new List<string>();
+        //List<string> c = new List<string>();
         public Form1()
         {
             InitializeComponent();
@@ -36,19 +37,40 @@ namespace RssReader
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
-
-
-                var stream = wc.OpenRead(url);
-
-                XDocument xdoc = XDocument.Load(stream);
-                var nodes = xdoc.Root.Descendants("item");
-                foreach (var node in nodes)
+                try
                 {
-                    lbTitles.Items.Add(node.Element("title").Value);
-                    a.Add(node.Element("link").Value);
-                    b.Add(node.Element("description").Value);
-                    c.Add(node.Element("pubDate").Value);
+                    var stream = wc.OpenRead(url);
+
+                    //XDocument xdoc = XDocument.Load(stream);
+                    //var nodes = xdoc.Root.Descendants("item");
+                    XDocument xdoc = XDocument.Load(stream);
+                    items = xdoc.Root.Descendants("item").Select(x => new ItemData
+                    {
+                        Title = (string)x.Element("title"),
+                        Link = (string)x.Element("link"),
+                        PubDate = (DateTime)x.Element("pubDate"),
+                        Description = (string)x.Element("description")
+                    });
+
+                    foreach (var item in items)
+                    {
+                        lbTitles.Items.Add(item.Title);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                   
+                
+                
+                //foreach (var node in nodes)
+                //{
+                //    lbTitles.Items.Add(node.Element("title").Value);
+                //    a.Add(node.Element("link").Value);
+                //    b.Add(node.Element("description").Value);
+                //    c.Add(node.Element("pubDate").Value);
+                //}
             } 
         }
 
@@ -56,13 +78,35 @@ namespace RssReader
         {
             Form2 form2 = new Form2();
             form2.Show();
-            form2.wbBrowser_DocumentCompleted(a[lbTitles.SelectedIndex]);
+            try
+            {
+                string link = (items.ToArray())[lbTitles.SelectedIndex].Link;
+                form2.wbBrowser_DocumentCompleted(link);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                form2.Close();
+            }
+            
+            // form2.wbBrowser_DocumentCompleted(a[lbTitles.SelectedIndex]);
         }
 
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DateTime dtime = DateTime.Parse(c[lbTitles.SelectedIndex]);
-            label2.Text = dtime + "\r\n" + b[lbTitles.SelectedIndex];
+            //DateTime dtime = DateTime.Parse(c[lbTitles.SelectedIndex]);
+            //label2.Text = dtime + "\r\n" + b[lbTitles.SelectedIndex];
+
+            try
+            {
+                label2.Text = items.ToArray()[lbTitles.SelectedIndex].PubDate.ToString() + "\r\n"
+                                                                + items.ToArray()[lbTitles.SelectedIndex].Description;
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+            
         }
 
     }

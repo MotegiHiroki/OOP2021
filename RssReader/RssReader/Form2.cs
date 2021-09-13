@@ -31,7 +31,6 @@ namespace RssReader
         {
             if (wbBrowser.CanGoBack == true)
             {
-                btBack.Enabled = true;
                 wbBrowser.GoBack();
             }
 
