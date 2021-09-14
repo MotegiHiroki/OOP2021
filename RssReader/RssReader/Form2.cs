@@ -46,23 +46,10 @@ namespace RssReader
 
         private void wbBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (wbBrowser.CanGoBack == true)
-            {
-                btBack.Enabled = true;
-            }
-            else
-            {
-                btBack.Enabled = false;
-            }
+            btBack.Enabled = wbBrowser.CanGoBack;
 
-            if (wbBrowser.CanGoForward == true)
-            {
-                btFront.Enabled = true;
-            }
-            else
-            {
-                btFront.Enabled = false;
-            }
+            btFront.Enabled = wbBrowser.CanGoForward;
+
         }
     }
 }
