@@ -12,7 +12,7 @@ namespace SendMail
 {
     public class Settings
     {
-        private static Settings instance = null;
+        private static Settings instance = null ;
         
 
         public int Port { get; set; } //ポート番号
@@ -27,22 +27,39 @@ namespace SendMail
         //インスタンスの取得
         public static Settings getInstance()
         {
-            if (instance == null || File.Exists(@"C: \Users\infosys\source\repos\MotegiHiroki\OOP2021\SendMail\SendMail\bin\Debug\set.xml"))
+            string filepass = @"./set.xml";
+            if (instance == null && File.Exists(@"./set.xml") )
             {
-                using (var reader = XmlReader.Create("set.xml"))
+                
+                using (var reader = XmlReader.Create(filepass))
                 {
                     var serializer = new DataContractSerializer(typeof(Settings));
                     var novel = serializer.ReadObject(reader) as Settings;
                     instance = novel;
                 }
-                
+
             }
-            else
+            else if(instance == null )
             {
                 instance = new Settings();
             }
 
             return instance;
+        }
+
+        //送信データ登録
+        public void setSendConfig(string host, int port,
+                                    string mailaddr, string pass, bool ssl)
+        {
+            Host = host;
+            Port = port;
+            MailAddr = mailaddr;
+            Pass = pass;
+            Ssl = ssl;
+
+
+            
+
         }
 
         //初期値

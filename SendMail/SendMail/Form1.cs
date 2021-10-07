@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -17,12 +18,12 @@ namespace SendMail
     {
         ConfigForm config = new ConfigForm();
         private Settings set = Settings.getInstance();
-        Settings setting;
-        XDocument xdoc = new XDocument();
+        
         
         public Form1()
         {
-            if (xdoc == null)
+            string filepass = @"./set.xml";
+            if (!File.Exists(filepass))
             {
                 config.ShowDialog();
             }
@@ -34,11 +35,11 @@ namespace SendMail
         {
             try
             {
-                config.update();
+
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
                 //差出人アドレス
-                mailMessage.From = new MailAddress(setting.MailAddr);
+                mailMessage.From = new MailAddress(set.MailAddr);
                 //宛先(To)
                 mailMessage.To.Add(tbTo.Text);
                 if (tbCc.Text != "")
@@ -59,10 +60,10 @@ namespace SendMail
                 //SMTPを使ってメールを送信する
                 SmtpClient smtpClient = new SmtpClient();
                 //メール送信のための認証情報
-                smtpClient.Credentials = new NetworkCredential(setting.MailAddr, setting.Pass);
-                smtpClient.Host = setting.Host;
-                smtpClient.Port = setting.Port;
-                smtpClient.EnableSsl = setting.Ssl;
+                smtpClient.Credentials = new NetworkCredential(set.MailAddr, set.Pass);
+                smtpClient.Host = set.Host;
+                smtpClient.Port = set.Port;
+                smtpClient.EnableSsl = set.Ssl;
                 smtpClient.SendCompleted += SmtpClient_SendCompleted;
                 //smtpClient.Send(mailMessage);
 

@@ -19,6 +19,13 @@ namespace SendMail
         public ConfigForm()
         {
             InitializeComponent();
+            
+            tbHost.Text = setting.Host;
+            tbPass.Text = setting.Pass;
+            tbPort.Text = setting.Port.ToString();
+            tbUserName.Text = setting.MailAddr;
+            cbSsl.Checked = true;
+            tbSender.Text = setting.Host;
         }
 
         private void btDefault_Click(object sender, EventArgs e)
@@ -27,6 +34,8 @@ namespace SendMail
             tbPass.Text = setting.sPass();
             tbPort.Text = setting.sPort();
             tbUserName.Text = setting.sMailAddr();
+            cbSsl.Checked = true;
+            tbSender.Text = setting.sHost();
 
         }
 
@@ -38,8 +47,10 @@ namespace SendMail
 
         public void btApply_Click(object sender, EventArgs e)
         {
+            
             update();
         }
+        
 
         public void update()
         {
