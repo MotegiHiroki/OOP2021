@@ -41,37 +41,24 @@ namespace SendMail
 
         public void btOk_Click(object sender, EventArgs e)
         {
-            update();
+            btApply_Click(sender,e);
             this.Close();
         }
 
         public void btApply_Click(object sender, EventArgs e)
         {
-            
-            update();
+            try
+            {
+                setting.setSendConfig(tbHost.Text, int.Parse(tbPort.Text), tbUserName.Text, tbPass.Text, cbSsl.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         
 
-        public void update()
-        {
-            setting.Host = tbHost.Text;
-            setting.Pass = tbPass.Text;
-            setting.Port = int.Parse(tbPort.Text);
-            setting.MailAddr = tbUserName.Text;
-            setting.Ssl = cbSsl.Checked;
-            var settings = new XmlWriterSettings
-            {
-                Encoding = new System.Text.UTF8Encoding(false),
-                Indent = true,
-                IndentChars = " ",
-            };
-
-            using (var writer = XmlWriter.Create("set.xml", settings))
-            {
-                var ser = new DataContractSerializer(setting.GetType());
-                ser.WriteObject(writer, setting);
-            }
-        }
+        
 
         private void btCancel_Click(object sender, EventArgs e)
 

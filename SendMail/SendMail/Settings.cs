@@ -48,7 +48,7 @@ namespace SendMail
         }
 
         //送信データ登録
-        public void setSendConfig(string host, int port,
+        public bool setSendConfig(string host, int port,
                                     string mailaddr, string pass, bool ssl)
         {
             Host = host;
@@ -57,8 +57,20 @@ namespace SendMail
             Pass = pass;
             Ssl = ssl;
 
+            var xws = new XmlWriterSettings
+            {
+                Encoding = new System.Text.UTF8Encoding(false),
+                Indent = true,
+                IndentChars = " ",
+            };
 
-            
+            using (var writer = XmlWriter.Create("set.xml", xws))
+            {
+                var ser = new DataContractSerializer(this.GetType());
+                ser.WriteObject(writer, this);
+            }
+
+            return true;
 
         }
 

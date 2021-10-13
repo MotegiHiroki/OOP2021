@@ -35,7 +35,6 @@ namespace SendMail
         {
             try
             {
-
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
                 //差出人アドレス
@@ -50,12 +49,19 @@ namespace SendMail
                 {
                     mailMessage.Bcc.Add(tbBcc.Text);
                 }
-                
+
                 
                 //件名タイトル
                 mailMessage.Subject = tbTitle.Text;
+
+                if (tbMessage.Text == "")
+                {
+                    MessageBox.Show("入力されていません");
+                    return;
+                }
                 //本文
                 mailMessage.Body = tbMessage.Text;
+
 
                 //SMTPを使ってメールを送信する
                 SmtpClient smtpClient = new SmtpClient();
@@ -69,13 +75,16 @@ namespace SendMail
 
                 string userState = "SendMail";
                 smtpClient.SendAsync(mailMessage, userState);
+
+                btSend.Enabled = false;
                 
+
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
@@ -87,13 +96,37 @@ namespace SendMail
             else
             {
                 MessageBox.Show("送信完了");
+                
+                ClearTextBox(this);
             }
+            btSend.Enabled = true;
         }
 
         private void btConfig_Click(object sender, EventArgs e)
         {
-            
+            config = new ConfigForm();
             config.ShowDialog();
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        public static void ClearTextBox(Control hParent)
+        {
+            foreach (Control cControl in hParent.Controls)
+            {
+                if (cControl is TextBoxBase)
+                {
+                    cControl.Text = string.Empty;
+                }
+            }
+        }
+        private void 新規作成NToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearTextBox(this);
+           
         }
     }
 }
