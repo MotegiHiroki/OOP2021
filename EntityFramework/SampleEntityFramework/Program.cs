@@ -188,12 +188,9 @@ namespace SampleEntityFramework
                 var authors = db.Authors.OrderByDescending(x => x.Birthday);
                 foreach (var author in authors)
                 {
-                    foreach (var book in books)
+                    foreach (var book in author.Books)
                     {
-                        if (author.Name == book.Author.Name)
-                        {
                             Console.WriteLine($"{book.Title} {book.PublishedYear}");
-                        }
                         
                     }
                     Console.WriteLine();
