@@ -220,7 +220,14 @@ namespace CarReportSystem {
             //dgvRegistData.Columns[5].Visible = false;
             carReportDataGridView.Columns[0].Visible = false;
             carReportDataGridView.Columns[1].HeaderText = "日付";
-            
+            carReportDataGridView.Columns[2].HeaderText = "記録者";
+            carReportDataGridView.Columns[3].HeaderText = "メーカー";
+            carReportDataGridView.Columns[4].HeaderText = "車名";
+            carReportDataGridView.Columns[5].HeaderText = "レポート";
+            carReportDataGridView.Columns[6].HeaderText = "画像";
+            //carReportDataGridView.Columns[6].Visible = false;
+            ssErrorLavel.Text = null;
+
         }
 
         private void carReportBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -236,6 +243,7 @@ namespace CarReportSystem {
             if (carReportDataGridView.CurrentRow == null) return;
             try
             {
+                ssErrorLavel.Text = null;
                 dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;
                 cbAuthor.Text = (string)carReportDataGridView.CurrentRow.Cells[2].Value;
                 //メーカー(文字列　→　列挙型)
@@ -248,9 +256,14 @@ namespace CarReportSystem {
                 tbReport.Text = (string)carReportDataGridView.CurrentRow.Cells[5].Value;
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDataGridView.CurrentRow.Cells[6].Value);
             }
-            catch(Exception)
+            catch(InvalidCastException)
             {
                 pbPicture.Image = null;
+            }
+            catch(Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+                ssErrorLavel.Text = ex.Message;
             }
 
         }
@@ -258,8 +271,12 @@ namespace CarReportSystem {
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b)
         {
-            ImageConverter imgconv = new ImageConverter();
-            Image img = (Image)imgconv.ConvertFrom(b);
+            Image img = null;
+            if (b.Length > 0)
+            {
+                ImageConverter imgconv = new ImageConverter();
+                img = (Image)imgconv.ConvertFrom(b);
+            }
             return img;
         }
         // Imageオブジェクトをバイト配列に変換
