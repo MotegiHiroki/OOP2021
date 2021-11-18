@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -13,7 +14,8 @@ namespace SendMail
     public class Settings
     {
         private static Settings instance = null ;
-        
+        public static bool Set { get; private set; } = true;
+
 
         public int Port { get; set; } //ポート番号
         public string Host { get; set; } //ホスト名
@@ -22,27 +24,42 @@ namespace SendMail
         public bool Ssl { get; set; } //SSL
 
         //コンストラクタ
-        private Settings(){}
+        private Settings() { }
         
         //インスタンスの取得
         public static Settings getInstance()
         {
             string filepass = @"./set.xml";
-            if (instance == null && File.Exists(@"./set.xml") )
-            {
-                
-                using (var reader = XmlReader.Create(filepass))
-                {
-                    var serializer = new DataContractSerializer(typeof(Settings));
-                    var novel = serializer.ReadObject(reader) as Settings;
-                    instance = novel;
-                }
 
+            if (instance == null && File.Exists(@"./set.xml"))
+            {
+                try
+                {
+                    instance = new Settings();
+                    using (var reader = XmlReader.Create(filepass))
+                    {
+                        var serializer = new DataContractSerializer(typeof(Settings));
+                        var novel = serializer.ReadObject(reader) as Settings;
+
+                        instance.Host = novel.Host;
+                        instance.Port = novel.Port;
+                        instance.MailAddr = novel.MailAddr;
+                        instance.Pass = novel.Pass;
+                        instance.Ssl = novel.Ssl;
+                    }
+                }
+                catch
+                {
+                    Set = false;
+                    MessageBox.Show("a");
+                    
+                }
             }
-            else if(instance == null )
+            else if (instance == null)
             {
                 instance = new Settings();
             }
+            
 
             return instance;
         }
@@ -69,7 +86,7 @@ namespace SendMail
                 var ser = new DataContractSerializer(this.GetType());
                 ser.WriteObject(writer, this);
             }
-
+            Set = true;
             return true;
 
         }

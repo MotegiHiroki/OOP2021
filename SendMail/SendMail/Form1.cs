@@ -54,13 +54,20 @@ namespace SendMail
                 //件名タイトル
                 mailMessage.Subject = tbTitle.Text;
 
-                if (tbMessage.Text == "")
+                if (tbTitle.Text.Trim() == "")
                 {
                     MessageBox.Show("入力されていません");
                     return;
                 }
                 //本文
                 mailMessage.Body = tbMessage.Text;
+
+                if (tbMessage.Text.Trim() == "")
+                {
+                    MessageBox.Show("入力されていません");
+                    return;
+                }
+               
 
 
                 //SMTPを使ってメールを送信する
@@ -127,6 +134,14 @@ namespace SendMail
         {
             ClearTextBox(this);
            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (!Settings.Set)
+            {
+                config.ShowDialog();
+            }
         }
     }
 }
