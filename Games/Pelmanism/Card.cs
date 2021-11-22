@@ -47,7 +47,7 @@ namespace Pelmanism
         {
             State = false; //裏
             BackColor = CloseColor;
-            Text = Picture;
+            Text = "";
             Enabled = true; //選択可
         }
 

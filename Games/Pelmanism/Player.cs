@@ -31,7 +31,7 @@ namespace Pelmanism
         //今回1枚目に開いたカードの添え字
         public int NowOpenCardIndex1
         {
-            get { return NowOpenCardIndex1; }
+            get { return nowOpenCardIndex1; }
             set
             {
                 nowOpenCardIndex1 = value;
@@ -42,7 +42,7 @@ namespace Pelmanism
         //今回2枚目に開いたカードの添え字
         public int NowOpenCardIndex2
         {
-            get { return NowOpenCardIndex2; }
+            get { return nowOpenCardIndex2; }
             set
             {
                 nowOpenCardIndex2 = value;

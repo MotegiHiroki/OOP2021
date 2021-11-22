@@ -51,7 +51,7 @@ namespace SendMail
                 catch
                 {
                     Set = false;
-                    MessageBox.Show("a");
+                    MessageBox.Show("xmlが正しくありません");
                     
                 }
             }
